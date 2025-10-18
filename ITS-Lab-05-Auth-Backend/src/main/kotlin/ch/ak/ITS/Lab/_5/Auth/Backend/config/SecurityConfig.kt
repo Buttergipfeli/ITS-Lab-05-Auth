@@ -4,6 +4,7 @@ import ch.ak.ITS.Lab._5.Auth.Backend.filter.JwtAuthFilter
 import ch.ak.ITS.Lab._5.Auth.Backend.repository.UserRepository
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.AuthenticationProvider
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration
@@ -35,7 +36,8 @@ class SecurityConfig {
     }
 
     @Bean
-    fun authenticationManager(config: AuthenticationConfiguration) = config.authenticationManager
+    fun authenticationManager(config: AuthenticationConfiguration): AuthenticationManager =
+        config.authenticationManager
 
     @Bean
     fun securityFilterChain(
@@ -47,6 +49,7 @@ class SecurityConfig {
             .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
             .authorizeHttpRequests {
                 it.requestMatchers("/api/auth/**", "/h2-console/**").permitAll()
+                it.requestMatchers("/api/user/**").hasRole("USER")
                 it.anyRequest().authenticated()
             }
             .headers { it.frameOptions { f -> f.disable() } }
