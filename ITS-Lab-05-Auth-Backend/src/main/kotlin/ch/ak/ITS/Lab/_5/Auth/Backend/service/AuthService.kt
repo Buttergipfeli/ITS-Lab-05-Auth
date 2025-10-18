@@ -18,11 +18,11 @@ class AuthService(
     private val authManager: AuthenticationManager
 ) {
     fun register(req: RegisterRequest): String {
-        require(req.username.isNotBlank() && req.password.isNotBlank()) { "Username and password must not be blank" }
-        require(!userRepository.existsByUsername(req.username)) { "Username already exists" }
+        require(req.email.isNotBlank() && req.password.isNotBlank()) { "Email and password must not be blank" }
+        require(!userRepository.existsByEmail(req.email)) { "Email already exists" }
 
         val user = User(
-            username = req.username,
+            email = req.email,
             password = encoder.encode(req.password),
             role = Role.USER
         )
@@ -31,10 +31,10 @@ class AuthService(
     }
 
     fun login(req: AuthRequest): String {
-        val token = UsernamePasswordAuthenticationToken(req.username, req.password)
+        val token = UsernamePasswordAuthenticationToken(req.email, req.password)
         authManager.authenticate(token)
 
-        val user = userRepository.findByUsername(req.username) ?: throw IllegalArgumentException("User not found")
+        val user = userRepository.findByEmail(req.email) ?: throw IllegalArgumentException("User not found")
         return jwt.generateToken(user)
     }
 }

@@ -19,7 +19,7 @@ class User(
     val id: Long? = null,
 
     @Column(unique = true, nullable = false)
-    private var username: String,
+    private var email: String,
 
     @Column(nullable = false)
     private var password: String,
@@ -30,5 +30,5 @@ class User(
 ) : UserDetails {
     override fun getAuthorities() = mutableListOf(SimpleGrantedAuthority("ROLE_${role.name}"))
     override fun getPassword() = password
-    override fun getUsername() = username
+    override fun getUsername() = email
 }

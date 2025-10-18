@@ -31,7 +31,7 @@ class JwtService(
             .compact()
     }
 
-    fun extractUsername(token: String) = Jwts.parser()
+    fun extractEmail(token: String) = Jwts.parser()
         .verifyWith(signingKey())
         .build()
         .parseSignedClaims(token)
