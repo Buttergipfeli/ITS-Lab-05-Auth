@@ -69,11 +69,13 @@ class SecurityConfig {
             .authorizeHttpRequests {
                 it.requestMatchers("/api/auth/**", "/h2-console/**").permitAll()
                 it.requestMatchers("/api/user/**").hasRole("USER")
-                it.anyRequest().authenticated()
+                it.anyRequest().denyAll()
             }
             .headers { it.frameOptions { f -> f.disable() } }
             .authenticationProvider(authenticationProvider)
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter::class.java)
+            .formLogin { it.disable() }
+            .httpBasic { it.disable() }
 
         return http.build()
     }
