@@ -23,6 +23,7 @@ class AuthService(
 
         val user = User(
             email = req.email,
+            nickname = req.nickname,
             password = encoder.encode(req.password),
             role = Role.USER
         )

@@ -22,6 +22,9 @@ class User(
     private var email: String,
 
     @Column(nullable = false)
+    var nickname: String,
+
+    @Column(nullable = false)
     private var password: String,
 
     @Enumerated(EnumType.STRING)

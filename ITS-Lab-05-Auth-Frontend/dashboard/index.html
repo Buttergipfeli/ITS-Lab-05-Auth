@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="../global.css">
+</head>
+
+<body class="font-family-default background-default">
+    <main class="center fullscreen">
+        <div class="v-stack center border boder-radius-s padding-m container-sizing">
+            <h1>Dashboard</h1>
+
+            <div class="v-stack center row-gap-l fill-width padding-v-l">
+                <div class="v-stack center row-gap-m fill-width padding-v-l">
+                    <div class="v-stack start fill-width row-gap-s">
+                        <p class="no-padding-and-margin">Your email: <span id="email-output"></span></p>
+                        <p class="no-padding-and-margin">Your nickname: <span id="nickname-output"></span></p>
+                    </div>
+                    <input id="new-nickname-input" class="input-default fill-width" placeholder="New nickname"></input>
+                </div>
+
+                <div class="v-stack fill-width row-gap-m">
+                    <button id="change-nickname-button" class="button-default" style="background-color: rgb(22, 205, 144);">Change nickname</button>
+                    <button id="log-out-button" class="button-default" style="background-color: rgb(236, 95, 95);">Log out</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script type="module" src="./dashboard.js"></script>
+</body>
+
+</html>
