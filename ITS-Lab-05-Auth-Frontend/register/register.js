@@ -1,6 +1,7 @@
 import { SERVER_BASE_URL } from "../constants.js"
 
 const REGISTER_URL = `${SERVER_BASE_URL}/auth/register`
+const REGISTER_ERROR_MESSAGE = "Failed to register. Please check your details."
 
 document.addEventListener("DOMContentLoaded", () => {
     const registerBtn = document.getElementById("register-button")
@@ -25,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
             })
 
             if (!response.ok) {
-                throw new Error("Failed to register. Please check your details.")
+                throw new Error(REGISTER_ERROR_MESSAGE)
             }
 
             const data = await response.json()
@@ -34,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
             window.location.href = "/dashboard"
         } catch (error) {
             console.error(error)
-            alert("Registration error: " + error.message)
+            alert("Registration error: " + REGISTER_ERROR_MESSAGE)
         }
     })
 

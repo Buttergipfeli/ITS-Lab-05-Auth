@@ -1,6 +1,6 @@
 package ch.ak.ITS.Lab._5.Auth.Backend.filter
 
-import ch.ak.ITS.Lab._5.Auth.Backend.service.JwtService
+import ch.ak.ITS.Lab._5.Auth.Backend.service.auth.JwtService
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse

@@ -1,7 +1,10 @@
 package ch.ak.ITS.Lab._5.Auth.Backend.config
 
 import ch.ak.ITS.Lab._5.Auth.Backend.filter.JwtAuthFilter
+import ch.ak.ITS.Lab._5.Auth.Backend.handler.OAuth2SuccessHandler
+import ch.ak.ITS.Lab._5.Auth.Backend.model.user.Role
 import ch.ak.ITS.Lab._5.Auth.Backend.repository.UserRepository
+import ch.ak.ITS.Lab._5.Auth.Backend.service.auth.CustomOidcUserService
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.authentication.AuthenticationManager
@@ -62,17 +65,29 @@ class SecurityConfig {
     fun securityFilterChain(
         http: HttpSecurity,
         jwtAuthFilter: JwtAuthFilter,
-        authenticationProvider: AuthenticationProvider
+        authenticationProvider: AuthenticationProvider,
+        customOidcUserService: CustomOidcUserService,
+        oAuth2SuccessHandler: OAuth2SuccessHandler
     ): SecurityFilterChain {
         http.csrf { it.disable() }
             .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
             .authorizeHttpRequests {
-                it.requestMatchers("/api/auth/**", "/h2-console/**").permitAll()
-                it.requestMatchers("/api/user/**").hasRole("USER")
+                it.requestMatchers(
+                    "/api/auth/**",
+                    "/h2-console/**",
+                    "/oauth2/**",
+                    "/login/oauth2/**"
+                ).permitAll()
+                it.requestMatchers("/api/user/**").hasRole(Role.USER.name)
                 it.anyRequest().denyAll()
             }
             .headers { it.frameOptions { f -> f.disable() } }
             .authenticationProvider(authenticationProvider)
+            .oauth2Login { oauth ->
+                oauth
+                    .userInfoEndpoint { u -> u.oidcUserService(customOidcUserService) }
+                    .successHandler(oAuth2SuccessHandler)
+            }
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter::class.java)
             .formLogin { it.disable() }
             .httpBasic { it.disable() }

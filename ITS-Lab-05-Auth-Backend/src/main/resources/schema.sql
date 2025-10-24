@@ -3,5 +3,7 @@ CREATE TABLE app_user (
     email VARCHAR(255) NOT NULL UNIQUE,
     nickname VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
+    provider VARCHAR(255),
+    providerID VARCHAR(255) UNIQUE,
     role VARCHAR(20) NOT NULL
 );

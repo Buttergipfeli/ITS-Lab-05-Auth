@@ -1,4 +1,4 @@
-package ch.ak.ITS.Lab._5.Auth.Backend.service
+package ch.ak.ITS.Lab._5.Auth.Backend.service.auth
 
 import ch.ak.ITS.Lab._5.Auth.Backend.dto.auth.AuthRequest
 import ch.ak.ITS.Lab._5.Auth.Backend.dto.auth.RegisterRequest

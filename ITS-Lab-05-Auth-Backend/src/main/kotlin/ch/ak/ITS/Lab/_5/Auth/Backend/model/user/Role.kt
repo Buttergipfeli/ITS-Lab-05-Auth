@@ -1,5 +1,7 @@
 package ch.ak.ITS.Lab._5.Auth.Backend.model.user
 
 enum class Role {
-    USER
+    USER;
+
+    val grantedAuthority get() = "ROLE_$name"
 }

@@ -3,7 +3,8 @@ package ch.ak.ITS.Lab._5.Auth.Backend.controller
 import ch.ak.ITS.Lab._5.Auth.Backend.dto.auth.AuthRequest
 import ch.ak.ITS.Lab._5.Auth.Backend.dto.auth.AuthResponse
 import ch.ak.ITS.Lab._5.Auth.Backend.dto.auth.RegisterRequest
-import ch.ak.ITS.Lab._5.Auth.Backend.service.AuthService
+import ch.ak.ITS.Lab._5.Auth.Backend.service.auth.AuthService
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody

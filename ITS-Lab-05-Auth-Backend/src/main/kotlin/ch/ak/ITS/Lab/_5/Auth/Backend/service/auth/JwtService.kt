@@ -1,4 +1,4 @@
-package ch.ak.ITS.Lab._5.Auth.Backend.service
+package ch.ak.ITS.Lab._5.Auth.Backend.service.auth
 
 import io.jsonwebtoken.JwtException
 import io.jsonwebtoken.Jwts

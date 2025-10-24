@@ -1,5 +1,6 @@
 package ch.ak.ITS.Lab._5.Auth.Backend.model.user
 
+import ch.ak.ITS.Lab._5.Auth.Backend.model.oauth.OAuth2Provider
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
@@ -28,10 +29,17 @@ class User(
     private var password: String,
 
     @Enumerated(EnumType.STRING)
+    @Column(unique = true, nullable = true)
+    var provider: OAuth2Provider? = null,
+
+    @Column(nullable = true)
+    var providerID: String? = null,
+
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     var role: Role = Role.USER
 ) : UserDetails {
-    override fun getAuthorities() = mutableListOf(SimpleGrantedAuthority("ROLE_${role.name}"))
+    override fun getAuthorities() = mutableListOf(SimpleGrantedAuthority(role.grantedAuthority))
     override fun getPassword() = password
     override fun getUsername() = email
 }
