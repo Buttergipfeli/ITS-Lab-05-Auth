@@ -9,7 +9,7 @@
     ]
   },
   {
-    "name": "io.jsonwebtoken.impl.DefaultClaimsBuilder$Supplier",
+    "name": "io.jsonwebtoken.impl.DefaultJwtBuilder$Supplier",
     "methods": [
       {
         "name": "<init>",
@@ -18,7 +18,7 @@
     ]
   },
   {
-    "name": "io.jsonwebtoken.impl.DefaultJwtBuilder$Supplier",
+    "name": "io.jsonwebtoken.impl.DefaultClaimsBuilder$Supplier",
     "methods": [
       {
         "name": "<init>",
