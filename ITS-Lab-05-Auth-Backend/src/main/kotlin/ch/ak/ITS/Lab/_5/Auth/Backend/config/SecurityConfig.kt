@@ -74,6 +74,7 @@ class SecurityConfig {
             .authorizeHttpRequests {
                 it.requestMatchers(
                     "/api/auth/**",
+                    "/api/debug/**",
                     "/h2-console/**",
                     "/oauth2/**",
                     "/login/oauth2/**"
