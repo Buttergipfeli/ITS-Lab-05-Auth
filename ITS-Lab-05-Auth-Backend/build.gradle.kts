@@ -41,18 +41,6 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
-graalvmNative {
-    agent {
-        enabled.set(true)
-        defaultMode.set("standard")
-        metadataCopy {
-            inputTaskNames.add("bootRun")
-            outputDirectories.add("src/main/resources/META-INF/native-image")
-            mergeWithExisting.set(true)
-        }
-    }
-}
-
 kotlin {
     compilerOptions {
         freeCompilerArgs.addAll("-Xjsr305=strict")
